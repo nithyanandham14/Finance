@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './Pages/Login';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import MetalRates from './Pages/MetalRates';
@@ -30,12 +32,12 @@ export default function App() {
         <Sidebar darkMode={darkMode} setDarkMode={setDarkMode} />
         <div className="">
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/metalrates" element={<MetalRates />} />
-            <Route path="/item" element={<ItemForm />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/report" element={<Report />} />
+          <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/metalrates" element={<PrivateRoute><MetalRates /></PrivateRoute>} />
+            <Route path="/item" element={<PrivateRoute><ItemForm /></PrivateRoute>} />
+            <Route path="/calculator" element={<PrivateRoute><Calculator /></PrivateRoute>} />
+            <Route path="/report" element={<PrivateRoute><Report /></PrivateRoute>} />
           </Routes>
         </div>
       </div>

@@ -1,9 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Moon, Sun } from 'lucide-react';
+import { NavLink,useNavigate } from 'react-router-dom';
+import { Moon, Sun ,LogOut} from 'lucide-react';
 
 export default function Sidebar({ darkMode, setDarkMode }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Remove JWT
+    navigate('/login'); // Redirect to login page
+  };
   return (
+    
     <div className="sidebar">
       <h1 className=""><span>BJSN</span> Finance</h1>
       <nav className="sidebar-compo space-y-4">
@@ -24,7 +31,15 @@ export default function Sidebar({ darkMode, setDarkMode }) {
             {darkMode ? <Moon size={16} /> : <Sun size={16} />} {darkMode ? 'Dark' : 'Light'} Mode
           </span>
         </label>
+         <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 text-white bg-red-600 px-4 py-2 rounded hover:bg-red-700 transition"
+        >
+          <LogOut size={16} /> Logout
+        </button>
+        
       </div>
     </div>
+    
   );
 }
