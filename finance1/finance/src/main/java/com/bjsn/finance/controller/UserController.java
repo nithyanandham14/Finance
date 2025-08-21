@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+//@CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class UserController {
     @Autowired
     private UserService userService;
@@ -22,13 +22,11 @@ public class UserController {
     @Autowired
     private JWTservice jwTservice;
     @PostMapping("/register")
-    @CrossOrigin
     public Users adduser(@RequestBody Users user)
     {
         return userService.register(user);
     }
     @PostMapping("/login")
-    @CrossOrigin
     public ResponseEntity<?> login(@RequestBody Users user)
     {
         try {

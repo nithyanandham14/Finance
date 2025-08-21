@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+//@CrossOrigin(origins = "http://localhost:5173", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/bjsn")
 public class Itemcontroller {
@@ -20,7 +20,6 @@ public class Itemcontroller {
     Itemservice service;
 
     @GetMapping("/item/{jwlno}")
-    @CrossOrigin
     public ResponseEntity<Item> getitem(@PathVariable int jwlno)
     {
      Item item = service.getitemById(jwlno);
@@ -32,7 +31,6 @@ public class Itemcontroller {
      }
     }
     @PostMapping("/item")
-    @CrossOrigin
     public ResponseEntity<?>additem(@RequestBody Item item)
     {
         try{
@@ -46,7 +44,6 @@ public class Itemcontroller {
         }
     }
     @DeleteMapping("/item/{jwlno}")
-    @CrossOrigin
     public ResponseEntity<String>DeleteItem(@PathVariable int jwlno)
     {
         Item item = service.getitemById(jwlno);
@@ -61,7 +58,6 @@ public class Itemcontroller {
         }
     }
     @PutMapping("/item/{jwlno}")
-    @CrossOrigin
     public ResponseEntity<String> UpdateItem(@PathVariable int jwlno ,@RequestBody Item item)
     {
         Item item1 = null;
@@ -80,7 +76,6 @@ public class Itemcontroller {
 
     }
     @GetMapping("/item/{jwlno}/interest/details")
-    @CrossOrigin
     public ResponseEntity<Item> getFullInterestDetails(
             @PathVariable int jwlno,
             @RequestParam double monthlyRate,
@@ -97,7 +92,6 @@ public class Itemcontroller {
         return ResponseEntity.ok(result);  // 200 OK with result body
     }
     @PutMapping("/item/{jwlno}/release")
-    @CrossOrigin
     public ResponseEntity<String> markItemAsReleased(@PathVariable int jwlno, @RequestBody Item item) {
         Item existingItem = null;
         try {
@@ -124,7 +118,6 @@ public class Itemcontroller {
         }
     }
     @GetMapping("/items/report/pdf")
-    @CrossOrigin
     public ResponseEntity<byte[]> generateMonthlyReportPdf(
             @RequestParam int month,
             @RequestParam int year,
@@ -147,7 +140,6 @@ public class Itemcontroller {
         }
     }
     @PutMapping("/item/{jwlno}/status")
-    @CrossOrigin
     public ResponseEntity<String> updateStatus(
             @PathVariable int jwlno,
             @RequestParam boolean status) {

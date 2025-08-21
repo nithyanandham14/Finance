@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api")
 public class MetalRateController {
@@ -16,7 +16,6 @@ public class MetalRateController {
     private MetalRateService metalRateService;
 
     @GetMapping("/metal-rates")
-    @CrossOrigin
     public ResponseEntity<Map<String, Double>> getRates() {
         return ResponseEntity.ok(metalRateService.fetchRates());
     }
