@@ -29,7 +29,7 @@ public class UserService {
 
         if(authentication.isAuthenticated())
         {
-            return jwTservice.generatetoken(user.getUsername());
+            return jwTservice.generateToken(user.getUsername());
         }
         return "fail";
     }

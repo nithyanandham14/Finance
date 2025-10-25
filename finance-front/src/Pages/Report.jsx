@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API from '../axios';
 
 export default function Report() {
   const [month, setMonth] = useState('');
@@ -9,7 +10,7 @@ export default function Report() {
 
   const downloadReport = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/bjsn/items/report/pdf', {
+      const res = await API.get('/bjsn/items/report/pdf', {
         responseType: 'blob',
         params: { month, year, monthlyRate, filterStatus: status }
       });

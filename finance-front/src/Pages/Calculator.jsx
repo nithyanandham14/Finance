@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../axios';
+import API from '../axios';
 
 export default function Calculator() {
   const [jwlno, setJwlno] = useState('');
@@ -9,7 +10,7 @@ export default function Calculator() {
 
   const calculate = async () => {
     try {
-      const res = await axios.get(`http://localhost:8080/bjsn/item/${jwlno}/interest/details`, {
+      const res = await API.get(`/bjsn/item/${jwlno}/interest/details`, {
         params: { monthlyRate }
       });
       setDetails(res.data);
@@ -25,8 +26,8 @@ export default function Calculator() {
     if (!details) return;
     const newStatus = !details.status;
     try {
-      const response = await axios.put(
-        `http://localhost:8080/bjsn/item/${details.jwlno}/status`,
+      const response = await API.put(
+        `/bjsn/item/${details.jwlno}/status`,
         null,
         { params: { status: newStatus } }
       );

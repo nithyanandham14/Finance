@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import API from '../axios';
 
 export default function Dashboard() {
   const [rates, setRates] = useState({});
@@ -16,7 +17,7 @@ export default function Dashboard() {
 
   const fetchRates = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/api/metal-rates');
+      const res = await API.get('/api/metal-rates');
       setRates(res.data);
     } catch (err) {
       console.error('Error fetching metal rates:', err);
@@ -25,7 +26,7 @@ export default function Dashboard() {
 
   const fetchItemDetails = async (jwlno) => {
     try {
-      const res = await axios.get(`http://localhost:8080/bjsn/item/${jwlno}`);
+      const res = await API.get(`/bjsn/item/${jwlno}`);
       setItemDetails(res.data);
       setError('');
     } catch (err) {
@@ -44,6 +45,7 @@ export default function Dashboard() {
       setError('');
     }
   };
+  
 
   return (
     <div className='dashboard'>

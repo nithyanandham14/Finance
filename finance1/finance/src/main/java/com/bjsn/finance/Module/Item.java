@@ -27,7 +27,4 @@ public class Item {
 
     private double simpleInterest;
     private double compoundInterest;
-
-
-
 }

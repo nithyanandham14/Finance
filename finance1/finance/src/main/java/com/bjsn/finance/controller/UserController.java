@@ -34,7 +34,7 @@ public class UserController {
         } catch(Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error","Invalid username or password"));
         }
-        String token=jwTservice.generatetoken(user.getUsername());
+        String token=jwTservice.generateToken(user.getUsername());
         return ResponseEntity.ok(token);
     }
 }

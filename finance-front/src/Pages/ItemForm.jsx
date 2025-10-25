@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../axios';
+import API from '../axios';
 
 export default function ItemForm() {
   const [item, setItem] = useState({
@@ -25,7 +26,7 @@ export default function ItemForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/bjsn/item', item, {
+      await API.post('/bjsn/item', item, {
         headers: { 'Content-Type': 'application/json' }
       });
       alert('Item added successfully!');
